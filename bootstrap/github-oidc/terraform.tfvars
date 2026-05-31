@@ -1,4 +1,4 @@
-name_prefix   = "<your username>"
+name_prefix   = "testbruker1"
 location      = "norwayeast"
 
 github_organization = "msilabben"
