@@ -123,13 +123,13 @@ module "container_registry" {
 
 resource "azurerm_role_assignment" "aks_new_acr_pull" {
   scope                = module.container_registry.id
-  role_definition_name = "AcrPull"
+  role_definition_name = "Owner"
   principal_id         = module.aks_cluster.kubelet_identity_object_id
 }
 
 resource "azurerm_role_assignment" "deployment_acr_push" {
   scope                = module.container_registry.id
-  role_definition_name = "AcrPush"
+  role_definition_name = "Owner"
   principal_id         = module.federated_id_for_deployment.github_actions_push_principal_id
   principal_type       = "ServicePrincipal"
 }
@@ -155,5 +155,5 @@ resource "azurerm_role_assignment" "alb_reader_on_aks_node_rg" {
   role_definition_name = "Reader"
   principal_id         = module.app_gateway_for_containers.alb_identity_principal_id
 }
-
+//comment
 
