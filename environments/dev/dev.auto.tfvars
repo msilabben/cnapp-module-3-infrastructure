@@ -2,7 +2,7 @@
 location = "norwayeast"
 // Replace cnapp with your username:
 // name_prefix = "<your username>"
-name_prefix = "cnapp"
+name_prefix = "cnappuser5"
 
 // Key vault
 key_vault_administrator_principal_ids = "8e956d53-b63b-42a0-a1ea-b8f2de244c5c"
