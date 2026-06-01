@@ -1,5 +1,5 @@
-name_prefix   = "<your username>"
-location      = "norwayeast"
+name_prefix = "<your username>"
+location    = "norwayeast"
 
 github_organization = "msilabben"
 github_repository   = "<your M3 repository>"

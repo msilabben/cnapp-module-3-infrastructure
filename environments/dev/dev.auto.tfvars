@@ -1,13 +1,11 @@
 // General
-location    = "norwayeast"
+location = "norwayeast"
 // Replace cnapp with your username:
 // name_prefix = "<your username>"
 name_prefix = "cnapp"
 
 // Key vault
-key_vault_administrator_principal_ids = [
-  "8c451f58-cd20-4b9a-825a-e5c7ce4c3a00"
-]
+key_vault_administrator_principal_ids = "8e956d53-b63b-42a0-a1ea-b8f2de244c5c"
 
 key_vault_secrets_user_principal_ids = []
 
@@ -34,5 +32,5 @@ alb_controller_namespace = "azure-alb-system"
 
 github_organization = "msilabben"
 // Replace repo with your forked module 2 repo name
-github_repository   = "cnapp-module-2-application"
+github_repository   = "cnapp-module-2-application-tobias"
 github_environments = ["dev", "prod"]
