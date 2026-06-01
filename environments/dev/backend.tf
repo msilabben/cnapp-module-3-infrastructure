@@ -1,7 +1,7 @@
 terraform {
   backend "azurerm" {
-    resource_group_name  = "rg-cnapp-tfstate"
-    storage_account_name = "sttfcnapp"
+    resource_group_name  = "rg-cnappuser1-tfstate"
+    storage_account_name = "sttfcnappuser1"
     container_name       = "tfstate-dev"
     key                  = "dev.terraform.tfstate"
     use_oidc             = true
