@@ -5,7 +5,7 @@ location = "norwayeast"
 name_prefix = "cnappuser5"
 
 // Key vault
-key_vault_administrator_principal_ids = "8e956d53-b63b-42a0-a1ea-b8f2de244c5c"
+key_vault_administrator_principal_ids = ["8e956d53-b63b-42a0-a1ea-b8f2de244c5c"]
 
 key_vault_secrets_user_principal_ids = []
 
