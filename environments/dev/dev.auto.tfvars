@@ -10,7 +10,7 @@ key_vault_administrator_principal_ids = "8e956d53-b63b-42a0-a1ea-b8f2de244c5c"
 key_vault_secrets_user_principal_ids = []
 
 aks_node_count = 2
-aks_vm_size    = "Standard_D2s_v3"
+aks_vm_size    = "Standard_D2s_v3" 
 
 
 # Must be lowercase alphanumeric only. No hyphens.
