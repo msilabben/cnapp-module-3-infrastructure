@@ -37,6 +37,6 @@ variable "tags" {
 }
 
 variable "retention_period_in_days" {
-  type = number
+  type    = number
   default = 7
 }
