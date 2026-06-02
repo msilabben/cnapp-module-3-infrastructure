@@ -26,7 +26,7 @@ deny[msg] {
 
 deny[msg] {
   resource := input.resources[_]
-  resources.type := "azurerm_role_assignment"
+  resource.type := "azurerm_role_assignment"
 
   resource.properties.role_definition_name == "Owner"
 
