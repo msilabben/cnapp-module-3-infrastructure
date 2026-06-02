@@ -35,8 +35,3 @@ variable "tags" {
   description = "Tags to apply to the Azure Container Registry."
   default     = {}
 }
-
-variable "retention_period_in_days" {
-  type    = number
-  default = 7
-}
