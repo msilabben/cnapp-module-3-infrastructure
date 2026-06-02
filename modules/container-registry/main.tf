@@ -12,6 +12,7 @@ resource "azurerm_container_registry" "this" {
   location            = var.location
   sku                 = var.sku
   admin_enabled       = var.acr_admin_enabled
+  #checkov:skip=CKV_AZURE_167:retention policy requires premium SKU, ignored for now
 
   tags = var.tags
 }
