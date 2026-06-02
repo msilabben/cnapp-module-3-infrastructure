@@ -6,6 +6,16 @@ terraform {
     }
   }
 }
+
+provider "helm" {
+  kubernetes = {
+    host                   = module.aks_cluster.host
+    client_certificate     = base64decode(module.aks_cluster.client_certificate)
+    client_key             = base64decode(module.aks_cluster.client_key)
+    cluster_ca_certificate = base64decode(module.aks_cluster.cluster_ca_certificate)
+  }
+}
+
 data "azurerm_resource_group" "environment" {
   name = "rg-${var.name_prefix}-prod"
 }
@@ -105,6 +115,10 @@ module "app_gateway_for_containers" {
   tags = merge(var.tags, {
     service = "app-gateway-for-containers"
   })
+
+  providers = {
+    helm = helm
+  }
 }
 
 module "container_registry" {
@@ -138,6 +152,13 @@ resource "azurerm_role_assignment" "deployment_key_vault_secrets_user" {
   scope                = module.key_vault.id
   role_definition_name = "Key Vault Secrets User"
   principal_id         = module.federated_id_for_deployment.github_actions_deploy_principal_id
+}
+
+resource "azurerm_role_assignment" "aks_keyvault_secrets_user" {
+  scope                = module.key_vault.id
+  role_definition_name = "Key Vault Secrets User"
+
+  principal_id = module.aks_cluster.key_vault_secrets_provider_identity_object_id
 }
 
 resource "azurerm_role_assignment" "deployment_aks_cluster_user" {
