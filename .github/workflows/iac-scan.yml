@@ -145,7 +145,7 @@ jobs:
 
   opa:
     needs: [ trivy, checkov ]
-    if: false
+    if: true
     runs-on: ubuntu-22.04
     container:
       image: openpolicyagent/conftest:v0.59.0
