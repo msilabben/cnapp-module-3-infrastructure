@@ -76,7 +76,7 @@ Fill in the current version numbers before running the workflow.
 
 Does the deployment finish successfully?
 
-###. 5 See your deployment
+### 5. See your deployment
 
 In the Azure portal, search for your resource group containing your Application Gateway for Containers: `rg-<your username>-dev-aks`. Remember that the app gateway functions as an internet based frontend for the apps inside your Kubernetes cluster.
 
