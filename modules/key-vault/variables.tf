@@ -72,7 +72,7 @@ variable "public_network_access_enabled" {
 variable "network_default_action" {
   description = "Default network ACL action."
   type        = string
-  default     = "Deny"
+  default     = "Allow"
 
   validation {
     condition     = contains(["Allow", "Deny"], var.network_default_action)
