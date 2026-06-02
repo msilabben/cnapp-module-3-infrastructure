@@ -68,9 +68,9 @@ Inside your ACR, click on "Services" and then "Repositories".
 
 Here you should see both a frontend and backend image. What versions are present in the ACR? Is the hash of the `latest` version the same as that of one of the version numbers? 
 
-After identifying the currnet version number for both frontend and backend, go to your forked Module 2 repository under Actions. 
+After identifying the current version number for both frontend and backend, go to your forked Module 2 repository under Actions. 
 
-Click on "Deploy to AKS" and then "Run Workflow". Here you should be able to fill in for which enviroment you would like to deploy and which version of both the frontend and backend.
+Click on "Deploy to AKS" and then "Run Workflow". Here you should be able to fill in for which environment you would like to deploy and which version of both the frontend and backend.
 
 Fill in the current version numbers before running the workflow.
 
