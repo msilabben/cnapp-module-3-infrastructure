@@ -13,5 +13,7 @@ resource "azurerm_container_registry" "this" {
   sku                 = var.sku
   admin_enabled       = var.acr_admin_enabled
 
+  retention_policy_in_days = var.retention_period_in_days
+
   tags = var.tags
 }
