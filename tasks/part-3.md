@@ -15,7 +15,7 @@ When committing to your Module 3 forked repo, a pipeline is run which performs `
 
 In this stage, `terraform output` is run and displayed. 
 
-Go to Actions in Module 3, identify a workflow which has run on `main`.
+Go to Actions in Module 3, identify the most recent workflow which has run on `main`.
 
 Go into this workflow and click on `Terraform apply dev`.
 
