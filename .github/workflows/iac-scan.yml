@@ -12,7 +12,6 @@ on:
         required: true
         type: string
 
-
 jobs:
   trivy:
     defaults:
@@ -117,10 +116,8 @@ jobs:
           sarif_file: environments/${{ inputs.environment }}/checkov-terraform.sarif
           category: checkov-terraform
 
-
   opa:
-    if: false # Remove this to enable Policy as Code (PaC) with Open Policy Agent
-    needs: [ trivy, checkov ]
+    needs: [trivy, checkov]
     runs-on: ubuntu-22.04
     container:
       image: openpolicyagent/conftest:v0.59.0
