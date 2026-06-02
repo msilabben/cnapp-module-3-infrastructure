@@ -1,79 +1,95 @@
-## Part 0: build your app
+## Part 3: Deploy your app
 
-Go to your module 2 fork, create a new codespace.
-
-You need the following environment variables.
-
-They are outputs from the initial terraform apply run in part 1.
-Go to:
-https://github.com/msilabben/cnapp-module-3-infrastructure-testbruker1/actions
-identify a workflow running on main.
-Go into Terraform apply dev > Terraform apply, scroll to the bottom.
-You should see outputs on the following format:
-
-Now go to environment variables in your forked m2. 
-You will need to use the outputs to set the following environment variables:
-
-Outputs:
-acr_id = "/subscriptions/468514d9-f054-4201-8f24-55d61d90872f/resourceGroups/rg-testbruker1-dev/providers/Microsoft.ContainerRegistry/registries/testbruker1deviumrxacr"
-acr_login_server = "testbruker1deviumrxacr.azurecr.io"
-acr_name = "testbruker1deviumrxacr"
-aks_cluster_id = "/subscriptions/468514d9-f054-4201-8f24-55d61d90872f/resourceGroups/rg-testbruker1-dev-aks/providers/Microsoft.ContainerService/managedClusters/aks-testbruker1-dev"
-aks_cluster_name = "aks-testbruker1-dev"
-alb_identity_client_id = "fd096649-4da7-498a-8763-552fdf817dc3"
-alb_identity_principal_id = "56970399-29b2-48b3-a2a4-743d6b68aa0e"
-github_deploy_client_id = "cad6384b-6724-44f7-b869-64e5783d50eb"
-github_push_client_id = "4955c9fe-dd3b-4194-9952-969a3d202d4a"
-key_vault_name = "kv-testbruker1-dev"
-key_vault_uri = "https://kv-testbruker1-dev.vault.azure.net/"
-new_acr_id = "/subscriptions/468514d9-f054-4201-8f24-55d61d90872f/resourceGroups/rg-testbruker1-dev/providers/Microsoft.ContainerRegistry/registries/testbruker1deviumrxacr"
-new_acr_login_server = "testbruker1deviumrxacr.azurecr.io"
-new_acr_name = "testbruker1deviumrxacr"
-
-ACR_NAME
-AGFC_FRONTEND_NAME (legge til som output kode/hente fra portalen)
-AGFC_NAME
-AKS_CLUSTER
-AZURE_DEPLOY_CLIENT_ID (github push)
-AZURE_PUSH_CLIENT_ID (github deploy)
-AZURE_RESOURCE_GROUP
-IMAGE_NAME_BACKEND
-IMAGE_NAME_FRONTEND
-ALB_CONTROLLER_ID
-
-AZURE_SUBSCRIPTION_ID: 468514d9-f054-4201-8f24-55d61d90872f
-
-AZURE_TENANT_ID: ee1a7779-f164-43b7-a09a-e9343e8e9d91
+### 1. Create codespace
+Create a new codespace in your module 2 fork. 
+Sign in to Azure using the steps provided in `part-1.md`
 
 
-next
+### 2. Add environment variables
 
-We must trigger a change in both the frontend and backend app. 
-So identity both and add some arbitrary text.
-For example ...
+Module 2 requires multiple environment variables to be able to deploy the application to the correct infrastructure.
 
-git add.
-git commit -m "fix"
-(this commit must include a "fix:" in it)
-git push
-watch actions complete, when done go to pull requests and click on chore main and confirm merge
-now go to actions again.
+The required variables are outputted by terraform when running the main pipeline on Module 3.
 
-backend-dev and frontend-dev should now work. 
-Prod will fail, ignore this for now.
+When committing to your Module 3 forked repo, a pipeline is run which performs `terraform apply`. 
 
-Confirm the images were pushed by going to your container registry in azure and see the current version of both frontend and backend
+In this stage, `terraform output` is run and displayed. 
 
-Here you should see the current backend and frontend version.
-no v1.0.0 but 0.0.0
-Run workflow
+Go to Actions in Module 3, identify a workflow which has run on `main`.
+
+Go into this workflow and click on `Terraform apply dev`.
+
+This job performs many steps, including `Terraform Apply`.
+
+Scroll to the bottom of this job to see outputted variables. 
+
+Save these variables.
+
+Now go to your forked Module 3 repo and create the Environment variable `dev`. 
+Use the outputted variables or identify manually in the Azure portal to fill inn the following Environment variables into `dev`:
+
+- `ACR_NAME`: <???>
+- `AGFC_FRONTEND_NAME`: <???>
+- `AGFC_NAME`: <???>
+- `AKS_CLUSTER`: <???>
+- `AZURE_DEPLOY_CLIENT_ID`: <???>
+- `AZURE_PUSH_CLIENT_ID`: <???>
+- `AZURE_RESOURCE_GROUP`: <???>
+- `KEYVAULT_NAME`: <???>
+- `KEYVAULT_IDENTITY_CLIENT_ID`: <???>
 
 
+### 3. Update and publish your application images
 
-next go to actions in m2, deploy to ASK, run workflow, and fill in the current versions
+We must do a change in both the frontend and backend app.
+
+This will cause the pipeline to run which updates the frontend and backend image versions.
+
+Go into your forked module 2 repo open the following files:
+
+- `frontend/src/index.html`
+- `backend/app/main.py`
+
+Do a small change in both, like changing what text gets written by each app before committing.
+
+Watch Actions complete. When it has finished, go to pull requests and click on "chore: main" and confirm merge.
+
+Now go to actions again.
+
+Backend-dev and frontend-dev should now be green and be deployed to your Azure Container Registry (ACR). Prod will fail, ignore this for now.
+
+### 4. Pull the current app version to your Kubernetes cluster
+
+Go to the Azure portal. In the search bar, search for the resource group containing your ACR: `rg-<your username>-dev`
+
+In this resource group, you should see your ACR on the format: `<your username>devxxxxxxx`. ACRs must be globally unique across Azure and will therefore have a random string of characters appended to it.
+
+Inside your ACR, click on "Services" and then "Repositories".
+
+Here you should see both a frontend and backend image. What versions are present in the ACR? Is the hash of the `latest` version the same as that of one of the version numbers? 
+
+After identifying the currnet version number for both frontend and backend, go to your forked Module 2 repository under Actions. 
+
+Click on "Deploy to AKS" and then "Run Workflow". Here you should be able to fill in for which enviroment you would like to deploy and which version of both the frontend and backend.
+
+Fill in the current version numbers before running the workflow.
+
+Does the deployment finish successfully?
+
+###. 5 See your deployment
+
+In the Azure portal, search for your resource group containing your Application Gateway for Containers: `rg-<your username>-dev-aks`. Remember that the app gateway functions as an internet based frontend for the apps inside your Kubernetes cluster.
+
+Inside your resource group go into `agfc-<your username>-dev`, Settings, and then Frontends. 
+
+Try visiting your shown FQDN. Does the application work?
 
 
+## Extra
+We have just successfully deployed our app into our own created infrastructure.
 
-extra:
-prod is way behind and unfinished, oh no!
-use the code from environments dev to fix environments prod
+But so far everything has been deployed to Dev. 
+
+The Prod environment does not contain any of our created resources just yet. 
+
+Can you replicate the code from environments/dev and into environments/prod to deploy the same infrastructure? What about publishing an app?
