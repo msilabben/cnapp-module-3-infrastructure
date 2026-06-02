@@ -1,8 +1,9 @@
 resource "azurerm_kubernetes_cluster" "this" {
-  name                = var.name
-  location            = var.location
-  resource_group_name = var.resource_group_name
-  dns_prefix          = var.dns_prefix
+  name                   = var.name
+  location               = var.location
+  resource_group_name    = var.resource_group_name
+  dns_prefix             = var.dns_prefix
+  local_account_disabled = true
 
   kubernetes_version = var.kubernetes_version
 
