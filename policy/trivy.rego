@@ -1,5 +1,4 @@
 package main
-package custom.azure.iam
 
 config := {
   "max_high": 5,
