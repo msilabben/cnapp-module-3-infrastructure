@@ -31,7 +31,7 @@ Use the outputted variables or identify manually in the Azure portal to fill inn
 - `ACR_NAME`: <???>
 - `AGFC_FRONTEND_NAME`: <???>
 - `AGFC_NAME`: <???>
-- `AKS_CLUSTER`: <???>
+- `AKS_CLUSTER_NAME`: <???>
 - `AZURE_DEPLOY_CLIENT_ID`: <???>
 - `AZURE_PUSH_CLIENT_ID`: <???>
 - `AZURE_RESOURCE_GROUP`: <???>
