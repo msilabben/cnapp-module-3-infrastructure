@@ -170,3 +170,4 @@ jobs:
             trivy-results-${{ inputs.environment }}/trivy_terraform.sarif \
             --parser json \
             --policy policy/trivy.rego
+            --policy policy/*.rego
