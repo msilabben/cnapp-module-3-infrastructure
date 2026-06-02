@@ -1,4 +1,5 @@
 package main
+package custom.azure.iam
 
 config := {
   "max_high": 5,
@@ -24,7 +25,7 @@ deny[msg] {
   )
 }
 
-warning[msg] {
+deny[msg] {
   resource := input.resources[_]
   resource.type == "azurerm_role_assignment"
 
