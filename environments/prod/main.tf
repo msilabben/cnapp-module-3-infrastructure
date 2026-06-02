@@ -42,7 +42,7 @@ module "federated_id_for_deployment" {
 module "key_vault" {
   source = "../../modules/key-vault"
 
-  name                = "kv-${var.name_prefix}-prod"
+  name                = "kv-${var.name_prefix}-prod-01"
   location            = var.location
   resource_group_name = data.azurerm_resource_group.environment.name
   tenant_id           = var.tenant_id
@@ -50,7 +50,7 @@ module "key_vault" {
   administrator_principal_ids = var.key_vault_administrator_principal_ids
   secrets_user_principal_ids  = var.key_vault_secrets_user_principal_ids
 
-  purge_protection_enabled = false
+  purge_protection_enabled = true
 
   tags = merge(var.tags, {
     service = "key-vault"
