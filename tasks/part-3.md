@@ -25,7 +25,7 @@ Scroll to the bottom of this job to see outputted variables.
 
 Save these variables.
 
-Now go to your forked Module 2 repo and create the Environment variable `dev`. 
+Now go to your forked Module 2 repo and create the Environment `dev`. 
 Use the outputted variables or identify manually in the Azure portal to fill inn the following Environment variables into `dev`:
 
 - `ACR_NAME`: <???>
